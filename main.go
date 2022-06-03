@@ -12,7 +12,6 @@ func home(w http.ResponseWriter, r *http.Request) {
 		http.NotFound(w, r)
 		return
 	}
-
 	// Write a response to the client
 	w.Write([]byte("Hello from Snippetbox!"))
 }
@@ -27,11 +26,12 @@ func showSnippet(w http.ResponseWriter, r *http.Request) {
 func createSnippet(w http.ResponseWriter, r *http.Request) {
 	// Restrict the function to only POST requests
 	if r.Method != "POST" {
+		// Include Allow POST header to the response
+		w.Header().Set("Allow", "POST")
 		w.WriteHeader(405)
 		w.Write([]byte("Method not allowed"))
 		return
 	}
-
 	// Write a response to the client
 	w.Write([]byte("Create a new snippet!"))
 }
