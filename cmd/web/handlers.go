@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 	"strconv"
 )
@@ -40,19 +39,4 @@ func createSnippet(w http.ResponseWriter, r *http.Request) {
 	}
 	// Write a response to the client
 	w.Write([]byte("Create a new snippet!"))
-}
-
-func main() {
-	// Create a new router
-	mux := http.NewServeMux()
-
-	// Handle the routes
-	mux.HandleFunc("/", home)
-	mux.HandleFunc("/snippet", showSnippet)
-	mux.HandleFunc("/snippet/create", createSnippet)
-
-	// Start the server
-	log.Println("Starting server on :4000")
-	err := http.ListenAndServe(":4000", mux)
-	log.Fatal(err)
 }
