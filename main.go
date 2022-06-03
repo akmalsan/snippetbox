@@ -7,6 +7,12 @@ import (
 
 // Define a home handler function
 func home(w http.ResponseWriter, r *http.Request) {
+	// Add URL path check
+	if r.URL.Path != "/" {
+		http.NotFound(w, r)
+		return
+	}
+
 	// Write a response to the client
 	w.Write([]byte("Hello from Snippetbox!"))
 }
