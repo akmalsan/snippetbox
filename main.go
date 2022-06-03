@@ -28,8 +28,7 @@ func createSnippet(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
 		// Include Allow POST header to the response
 		w.Header().Set("Allow", "POST")
-		w.WriteHeader(405)
-		w.Write([]byte("Method not allowed"))
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		return
 	}
 	// Write a response to the client
